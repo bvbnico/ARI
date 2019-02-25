@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>UNIVERSIDAD NACIONAL DE ASUNCION</h1>
+
+  <p>AlARMA REMOTA DE INCENDIOS</p>
+
+<h2></h2>
+
+  <p>TODOS LOS MODELOS</p>
+  <ul>
+    <li><strong>Estaciones:</strong> {{ num_estaciones }}</li>
+    <li><strong>Clientes:</strong> {{ num_clientes }}</li>
+    <li><strong>Tipos de sensor:</strong> {{ num_tipo_sensor }}</li>
+    <li><strong>Sensores total:</strong> {{ num_sensores }}</li>
+  </ul>
+
+{% endblock %}
