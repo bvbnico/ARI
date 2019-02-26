@@ -12,7 +12,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class estaciones(models.Model):
     #modelo que representa las estaciones de bombero
-    estacion_id = models.PositiveIntegerField()
     nombre = models.CharField(max_length=200)
     ciudad = models.CharField(max_length=200)
     direccion = models.CharField(max_length=200)
@@ -20,17 +19,16 @@ class estaciones(models.Model):
     longitud = models.CharField(max_length=20)
     nro_telefonico = models.CharField(max_length=20)
     def __unicode__(self):
-        return '%d %s %s %s %s %s' % (self.estacion_id, self.nombre, self.direccion, self.latitud,
+        return '%d %s %s %s %s %s' % (self.id, self.nombre, self.direccion, self.latitud,
         self.longitud,self. nro_telefonico)
     def __str__(self):
-        return '%d %s %s %s %s %s %s' % (self.estacion_id, self.ciudad, self.nombre, self.direccion, self.latitud,
+        return '%d %s %s %s %s %s %s' % (self.id, self.ciudad, self.nombre, self.direccion, self.latitud,
         self.longitud,self.nro_telefonico)
 
 
 class clientes(models.Model):
     #representa los clientes con todos sus datos
     estacion = models.ForeignKey(estaciones, on_delete=models.SET_NULL, null=True)
-    cliente_id = models.PositiveIntegerField()
     LOAN_STATUS = (
         ('p', 'Particular'),
         ('e', 'Empresa'),
@@ -51,11 +49,11 @@ class clientes(models.Model):
     obs = models.CharField(max_length=200)
     nro_sensores = models.PositiveIntegerField()
     def __unicode__(self):
-           return '%s %d %s %s %s %s %s %s %s %s %s %s %s %s %s %d' % (self.estaciones, self.cliente_id, self.tipo, self. descripcion,
+           return '%s %d %s %s %s %s %s %s %s %s %s %s %s %s %s %d' % (self.estaciones, self.id, self.tipo, self. descripcion,
            self.nombre,self.apellido,self.ci_nro,self.ruc,self.nro_telefonico,self.contacto,self.nro_celular,
            self.latitud,self.longitud,self.referencias,self.plano,self.obs,self.nro_sensores)
     def __str__(self):
-           return '%d %s %s %s %s %s %s %s %s %s %s %s %s %s %d' % (self.cliente_id, self.tipo, self. descripcion,
+           return '%d %s %s %s %s %s %s %s %s %s %s %s %s %s %d' % (self.id, self.tipo, self. descripcion,
            self.nombre,self.apellido,self.ci_nro,self.ruc,self.nro_telefonico,self.contacto,self.nro_celular,
            self.latitud,self.longitud,self.referencias,self.obs,self.nro_sensores)
 
@@ -63,11 +61,10 @@ class clientes(models.Model):
 class sensores(models.Model):
     #representa los datos de todos los nro_sensores
     cliente = models.ForeignKey(clientes, on_delete=models.SET_NULL, null=True)
-    sensor_id: models.PositiveIntegerField()
     tipo = models. ForeignKey('tipo_sensor', on_delete=models.SET_NULL, null=True)
     sector = models.CharField(max_length=1)
     def __unicode__(self):
-        return '%s %d %s %s' % (self.cliente, self.sensor_id, self.tipo, self.sector)
+        return '%s %d %s %s' % (self.cliente, self.id, self.tipo, self.sector)
 
 class tipo_sensor(models.Model):
     #representa los tipos de sensores existentes
@@ -88,3 +85,9 @@ class usuarios(models.Model):
     estacion = models.ForeignKey(estaciones, on_delete=models.SET_NULL, null=True)
     def __unicode__(self):
             return '%s %s %s %s' % (self.nombre, self.apellido, self.puesto, self.estacion)
+
+class alarmas(models.Model):
+    sensor = models.ForeignKey(sensores, on_delete=models.SET_NULL, null=True)
+    estado = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
