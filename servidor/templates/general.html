@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>UNIVERSIDAD NACIONAL DE ASUNCION</h1>
+
+  <p>AlARMA REMOTA DE INCENDIOS</p>
+
+{% for cliente in clientes %}
+
+  <h2>{{cliente.nombre}}</h2>
+
+  <h2>{{cliente.apellido}}</h2
+
+
+{% endfor %}
+
+{% endblock %}
