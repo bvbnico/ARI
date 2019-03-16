@@ -66,5 +66,6 @@ def users_view(request):
         #esto va a ser ùtil para guardar los registros estadìsticos en otros modelos
         c = clientes.objects.filter(estado="pendiente")
         #c = clientes.objects.values('nombre')
+        
         return render(request, 'general.html', {'clientes': c})
     return HttpResponseNotFound("")
