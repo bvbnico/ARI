@@ -19,6 +19,7 @@ from django.urls import path
 from django.conf.urls import url
 from django.urls import include
 from django.views.generic import RedirectView
+from servidor import views
 
 urlpatterns = [
 
@@ -26,7 +27,9 @@ urlpatterns = [
     #path('home/', include('servidor.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     path('home/', include('servidor.urls')),
+    #path('login/', include('servidor.urls')),
     path('admin/', admin.site.urls),
+    url('login/', views.login, name='login'),
     path('', RedirectView.as_view(url='/home/', permanent=True)), #redirigir la pàgina principal a esta URL
 ]
 

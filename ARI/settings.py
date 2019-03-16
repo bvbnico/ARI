@@ -25,7 +25,7 @@ SECRET_KEY = '-p4vs6cdiv_=b8_vmqn#%tb2xf%rw4(1h&a!e4!dv873$_hgg4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.19','localhost','192.168.43.239']
+ALLOWED_HOSTS = ['192.168.0.14','localhost','192.168.43.239']
 
 
 # Application definition
@@ -70,7 +70,7 @@ TEMPLATES = [
 ]
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/login'
 
 WSGI_APPLICATION = 'ARI.wsgi.application'
 
@@ -118,7 +118,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+STATICFILES_DIRS = (
+  os.path.join(SITE_ROOT, 'static/'),
+)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
