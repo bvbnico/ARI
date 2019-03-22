@@ -47,11 +47,11 @@ def devices_posts(request):
     if request.method == 'POST':
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        print(body)
+        #print(body)
         id_sensor = body['id_sensor']
         id_client = body['id_client']
         c = clientes.objects.filter(id_cliente = id_client).update(estado="pendiente")
-        c = clientes.objects.filter(estado="pendiente")
+        #c = clientes.objects.filter(estado="pendiente")
         #print(body,int(id_sensor))
         d = {'recibido':"0"}
     return JsonResponse(d)
